@@ -21,15 +21,6 @@ public static class GameAccessLayer
         player.Name = name;
         return player;
     }
-    
-    public static Coordinate GetCoordinatesOfField(string parms)
-    {
-        if(!int.TryParse(parms, out int coord))
-        {
-            throw new Exception();
-        }
 
-        var idk = new Coordinate(coord % 3, coord / 3);
-        return idk;
-    }
+    public static Coordinate GetCoordinatesOfField(int coord) => new Coordinate(coord % 3, coord / 3);
 }

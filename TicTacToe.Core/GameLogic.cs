@@ -29,18 +29,18 @@ public class GameLogic
 
         //omg, its a bot
         Coordinate initialMove = bot.GetMove(_array);
-        SetValue(initialMove.X, initialMove.Y);
+        SetValue(initialMove);
     }
 
     public bool GameOver { get; private set; }
 
     public BasePlayer? CurrentPlayer => _currentPlayer;
 
-    public char GetValue(int x, int y) => _array[x, y];
+    public char GetValue(Coordinate coord) => _array[coord.X, coord.Y];
 
-    public void SetValue(int x, int y)
+    public void SetValue(Coordinate coord)
     {
-        if (_array[x, y] == 'X' || _array[x, y] == 'O')
+        if (_array[coord.X, coord.Y] == 'X' || _array[coord.X, coord.Y] == 'O')
         {
             throw new Exception("Field already ocupied!");
         }
@@ -49,7 +49,7 @@ public class GameLogic
             throw new Exception("Failed not get current player.");
         }
 
-        _array[x, y] = _currentPlayer.Symbol;
+        _array[coord.X, coord.Y] = _currentPlayer.Symbol;  
         int result = BoardExtention.CheckGameSituation(_array);
 
         if (result < 2)
@@ -73,6 +73,6 @@ public class GameLogic
 
         // bot moves
         Coordinate move = bot.GetMove(_array);
-        SetValue(move.X, move.Y);
+        SetValue(move);
     }
 }

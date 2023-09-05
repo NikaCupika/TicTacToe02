@@ -5,8 +5,6 @@ namespace TicTacToe.Domain.Models.Players.Bots;
 
 public class HardBot : BaseBot
 {
-    private readonly Random _random = new();
-
     public HardBot() 
         : base("Hard Bot") 
     { }
@@ -19,16 +17,14 @@ public class HardBot : BaseBot
 
     private CoordinateBot MinMaxMove(char[,] board, BasePlayer player)
     {
-        int result = BoardExtention.CheckGameSituation(board);
-        switch (result)
+        switch (BoardExtention.CheckGameSituation(board))
         {
             case 0: return new CoordinateBot(-1, -1, 0);
             case 1: return new CoordinateBot(-1, -1, 1);
             case -1: return new CoordinateBot(-1, -1, -1);
-            default: break;
         }
 
-        List<CoordinateBot> list = new();
+        List<CoordinateBot> coords = new();
         for (int y = 0; y < 3; y++)
         {
             for (int x = 0; x < 3; x++)
@@ -40,14 +36,14 @@ public class HardBot : BaseBot
 
                 board[x, y] = player.Symbol;
                 CoordinateBot move = MinMaxMove(board, player);
-                list.Add(new CoordinateBot(x, y, move.Value));
+                coords.Add(new CoordinateBot(x, y, move.Value));
                 board[x, y] = default;
             }
         }
 
-        int chosenValue = player.Symbol == 'X' ? list.Max(x => x.Value) : list.Min(x => x.Value);
-        list.RemoveAll(x => x.Value != chosenValue);
+        int chosenValue = player.Symbol == 'X' ? coords.Max(x => x.Value) : coords.Min(x => x.Value);
+        coords.RemoveAll(x => x.Value != chosenValue);
 
-        return list[_random.Next(0, list.Count)];
+        return coords[new Random().Next(0, coords.Count)];
     }
 }
