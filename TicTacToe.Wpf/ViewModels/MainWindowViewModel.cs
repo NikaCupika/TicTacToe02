@@ -5,14 +5,11 @@ using System.Collections.Generic;
 using TicTacToe.Core;
 using TicTacToe.Domain.Models;
 using TicTacToe.Domain.Models.Cordinates;
-using TicTacToe.Domain.Models.Players;
 
 namespace TicTacToe.Wpf.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject
 {
-    // TODO: check bots, check coordinates
-
     private GameLogic? _game;
 
     [ObservableProperty]

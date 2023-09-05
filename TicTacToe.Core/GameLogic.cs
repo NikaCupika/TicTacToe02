@@ -49,9 +49,10 @@ public class GameLogic
             throw new Exception("Failed not get current player.");
         }
 
-        _array[coord.X, coord.Y] = _currentPlayer.Symbol;  
+        _array[coord.X, coord.Y] = _currentPlayer.Symbol;        
         int result = BoardExtention.CheckGameSituation(_array);
 
+        // is game finished?
         if (result < 2)
         {
             if (result == 0)

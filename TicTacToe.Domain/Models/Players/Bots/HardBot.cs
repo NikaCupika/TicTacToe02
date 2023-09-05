@@ -29,15 +29,15 @@ public class HardBot : BaseBot
         {
             for (int x = 0; x < 3; x++)
             {
-                if (board[x, y] != default)
+                if (board[y, x] != default)
                 {
                     continue;
                 }
 
-                board[x, y] = player.Symbol;
-                CoordinateBot move = MinMaxMove(board, player);
+                board[y, x] = player.Symbol;
+                CoordinateBot move = MinMaxMove(board, player.Enemy);
                 coords.Add(new CoordinateBot(x, y, move.Value));
-                board[x, y] = default;
+                board[y, x] = default;
             }
         }
 
