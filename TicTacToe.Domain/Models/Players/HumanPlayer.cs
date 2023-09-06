@@ -7,9 +7,9 @@ public class HumanPlayer : BasePlayer
         : base("Human")
     { }
 
-    //public HumanPlayer(string name) 
-    //    : base(name)
-    //{ }
-
+    /// <summary>
+    /// Human player desides for themselves where they will move
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
     public override Coordinate GetMove(char[,] board) => throw new NotImplementedException();
 }

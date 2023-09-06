@@ -68,7 +68,7 @@ public partial class MainWindowViewModel : ObservableObject
             return false;
         }
 
-        Coordinate coords = GameAccessLayer.GetCoordinatesOfField(parm);
+        Coordinate coords = GameAccessLayer.GetCoordinateFromField(parm);
         return _game.GetValue(coords) == default;
     }
 
@@ -81,7 +81,7 @@ public partial class MainWindowViewModel : ObservableObject
             return;
         }
 
-        Coordinate coords = GameAccessLayer.GetCoordinatesOfField(parm);
+        Coordinate coords = GameAccessLayer.GetCoordinateFromField(parm);
         _game.SetValue(coords);
 
         UpdateBoard();
@@ -92,7 +92,7 @@ public partial class MainWindowViewModel : ObservableObject
         Field = new string[9];
         for (int i = 0; i < 9; i++)
         {
-            Coordinate coords = GameAccessLayer.GetCoordinatesOfField(i);
+            Coordinate coords = GameAccessLayer.GetCoordinateFromField(i);
             Field[i] = _game!.GetValue(coords).ToString();
         }
 

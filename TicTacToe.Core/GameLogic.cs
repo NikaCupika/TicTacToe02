@@ -11,6 +11,9 @@ public class GameLogic
     private readonly BasePlayer _player2;
     private BasePlayer? _currentPlayer;
 
+    /// <summary>
+    /// Create a game and if player one a bot is, make the first move
+    /// </summary>
     public GameLogic(BasePlayer player1, BasePlayer player2)
     {
         _player1 = player1;
@@ -27,7 +30,7 @@ public class GameLogic
             return;
         }
 
-        //omg, its a bot
+        // bot moves
         Coordinate initialMove = bot.GetMove(_array);
         SetValue(initialMove);
     }
@@ -36,11 +39,20 @@ public class GameLogic
 
     public BasePlayer? CurrentPlayer => _currentPlayer;
 
-    public char GetValue(Coordinate coord) => _array[coord.X, coord.Y];
+    /// <summary>
+    /// Get X or O on given coordinates
+    /// </summary>
+    public char GetValue(Coordinate coord) => _array[coord.Y, coord.X];
 
+    /// <summary>
+    /// Place current player on the given coordinates. If the enemy is a bot it will make it's move
+    /// </summary>
+    /// <exception cref="Exception">
+    /// Thrown when coordinates already has a player or the current player doesn't exist
+    /// </exception>
     public void SetValue(Coordinate coord)
     {
-        if (_array[coord.X, coord.Y] == 'X' || _array[coord.X, coord.Y] == 'O')
+        if (_array[coord.Y, coord.X] == 'X' || _array[coord.Y, coord.X] == 'O')
         {
             throw new Exception("Field already ocupied!");
         }
@@ -49,12 +61,12 @@ public class GameLogic
             throw new Exception("Failed not get current player.");
         }
 
-        _array[coord.X, coord.Y] = _currentPlayer.Symbol;        
+        _array[coord.Y, coord.X] = _currentPlayer.Symbol;
         int result = BoardExtention.CheckGameSituation(_array);
 
-        // is game finished?
         if (result < 2)
         {
+            // game finished
             if (result == 0)
             {
                 _currentPlayer = default;

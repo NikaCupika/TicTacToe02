@@ -22,5 +22,5 @@ public static class GameAccessLayer
         return player;
     }
 
-    public static Coordinate GetCoordinatesOfField(int coord) => new Coordinate(coord % 3, coord / 3);
+    public static Coordinate GetCoordinateFromField(int coord) => new Coordinate(coord % 3, coord / 3);
 }

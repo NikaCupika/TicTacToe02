@@ -1,14 +1,13 @@
 ﻿namespace TicTacToe.Domain.Extentions;
 public static class BoardExtention
 {
-    /// <summary>
-    /// Check status of the game
-    /// -> -1 player 2 won
-    /// ->  0 draw
-    /// ->  1 player 1 won
-    /// ->  2 ongoin
-    /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// Check status of the game:
+    /// [-1] player 2 won,
+    /// [0] draw,
+    /// [1] player 1 won,
+    /// [2] ongoing
+    /// </returns>
     public static int CheckGameSituation(char[,] board)
     {
         // columns

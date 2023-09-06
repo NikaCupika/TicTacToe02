@@ -10,6 +10,10 @@ public abstract class BasePlayer
 
     public string Name { get; set; }
     public char Symbol { get; set; }
-    public BasePlayer Enemy { get; set; }
+    public BasePlayer? Enemy { get; set; }
+
+    /// <summary>
+    /// Which coordinates should a player go to next
+    /// </summary>
     public abstract Coordinate GetMove(char[,] board);
 }

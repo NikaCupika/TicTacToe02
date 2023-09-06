@@ -11,5 +11,9 @@ public struct CoordinateBot
 
     public int X { get; }
     public int Y { get; }
+
+    /// <summary>
+    /// Value of this move
+    /// </summary>
     public int Value { get; }
 }

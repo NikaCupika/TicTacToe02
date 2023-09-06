@@ -10,14 +10,12 @@ public class EasyBot : BaseBot
 
     public override Coordinate GetMove(char[,] board)
     {
-        Random random = new();
         int x, y;
-
         do
         {
-            x = random.Next(0, 3);
-            y = random.Next(0, 3);
-        } while (board[x, y] != default);
+            x = new Random().Next(0, 3);
+            y = new Random().Next(0, 3);
+        } while (board[y, x] != default);
 
         return new Coordinate(x, y);
     }

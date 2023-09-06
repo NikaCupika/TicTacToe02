@@ -15,8 +15,12 @@ public class HardBot : BaseBot
         return new Coordinate(move.X, move.Y);
     }
 
-    private CoordinateBot MinMaxMove(char[,] board, BasePlayer player)
+    /// <summary>
+    /// Get the most aficient next move, by calculating through all posibilities
+    /// </summary>
+    private CoordinateBot MinMaxMove(char[,] board, BasePlayer currentPlayer)
     {
+        // is given game done
         switch (BoardExtention.CheckGameSituation(board))
         {
             case 0: return new CoordinateBot(-1, -1, 0);
@@ -24,6 +28,7 @@ public class HardBot : BaseBot
             case -1: return new CoordinateBot(-1, -1, -1);
         }
 
+        // on going
         List<CoordinateBot> coords = new();
         for (int y = 0; y < 3; y++)
         {
@@ -34,14 +39,18 @@ public class HardBot : BaseBot
                     continue;
                 }
 
-                board[y, x] = player.Symbol;
-                CoordinateBot move = MinMaxMove(board, player.Enemy);
+                // posible move
+                board[y, x] = currentPlayer.Symbol;
+                CoordinateBot move = MinMaxMove(board, currentPlayer.Enemy!);
                 coords.Add(new CoordinateBot(x, y, move.Value));
+
+                // last version
                 board[y, x] = default;
             }
         }
 
-        int chosenValue = player.Symbol == 'X' ? coords.Max(x => x.Value) : coords.Min(x => x.Value);
+        // the best moves
+        int chosenValue = currentPlayer.Symbol == 'X' ? coords.Max(x => x.Value) : coords.Min(x => x.Value);
         coords.RemoveAll(x => x.Value != chosenValue);
 
         return coords[new Random().Next(0, coords.Count)];
