@@ -8,12 +8,23 @@ namespace TicTacToe.Wpf.ViewModels;
 
 public static class GameAccessLayer
 {
-    public static Dictionary<string, Type> GetPlayerTypes() 
-        => typeof(BasePlayer)
-            .Assembly.GetTypes()
-            .Where(x => !x.IsAbstract)
-            .Where(x => x.IsSubclassOf(typeof(BasePlayer)))
-            .ToDictionary(x => x.Name, x => x);
+    public static Dictionary<string, Type> GetPlayerTypes()
+    {
+        IEnumerable<Type> types = typeof(BasePlayer)
+                        .Assembly.GetTypes()
+                        .Where(x => !x.IsAbstract)
+                        .Where(x => x.IsSubclassOf(typeof(BasePlayer)));
+
+        Dictionary<string, Type> result = new();
+        foreach (Type type in types)
+        {
+            result.Add(GetNameFromType(type), type);
+        }
+
+        return result;
+    }
+
+    public static string GetNameFromType(Type type) => (Activator.CreateInstance(type) as BasePlayer)!.Name;
 
     public static BasePlayer CreatePlayer(string name, Type type)
     {

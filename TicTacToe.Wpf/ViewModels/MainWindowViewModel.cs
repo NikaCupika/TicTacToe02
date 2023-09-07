@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TicTacToe.Core;
 using TicTacToe.Domain.Models;
 using TicTacToe.Domain.Models.Cordinates;
+using TicTacToe.Domain.Models.Players.Bots;
 
 namespace TicTacToe.Wpf.ViewModels;
 
@@ -14,25 +15,37 @@ public partial class MainWindowViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(StartClickCommand))]
-    private string _player01Name = string.Empty;
+    private string? _player01Name;
 
-    // TODO: default Names
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(StartClickCommand))]
     private Type? _player01Type;
+    partial void OnPlayer01TypeChanged(Type? value)
+    {
+        if ((value == typeof(EasyBot) || value == typeof(HardBot)) && string.IsNullOrEmpty(Player01Name))
+        {
+            Player01Name = GameAccessLayer.GetNameFromType(value);
+        }
+    }
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(StartClickCommand))]
-    private string _player02Name = string.Empty;
+    private string? _player02Name;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(StartClickCommand))]
     private Type? _player02Type;
+    partial void OnPlayer02TypeChanged(Type? value)
+    {
+        if ((value == typeof(EasyBot) || value == typeof(HardBot)) && string.IsNullOrEmpty(Player02Name))
+        {
+            Player02Name = GameAccessLayer.GetNameFromType(value);
+        }
+    }
 
     [ObservableProperty]
     private string[] _field = new string[9];
 
-    // TODO: default Human
     public Dictionary<string, Type> PlayerTypes => GameAccessLayer.GetPlayerTypes();
 
     public string Message
@@ -53,8 +66,8 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(_playersNotEmpty))]
     public void StartClick()
     {
-        BasePlayer player01 = GameAccessLayer.CreatePlayer(Player01Name, Player01Type!);
-        BasePlayer player02 = GameAccessLayer.CreatePlayer(Player02Name, Player02Type!);
+        BasePlayer player01 = GameAccessLayer.CreatePlayer(Player01Name!, Player01Type!);
+        BasePlayer player02 = GameAccessLayer.CreatePlayer(Player02Name!, Player02Type!);
         _game = new(player01, player02);
 
         UpdateBoard();
