@@ -11,15 +11,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="4*"/>
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="15"/>
         </Grid.ColumnDefinitions>
 
@@ -27,62 +23,72 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
-            <Grid.Resources>
-                <Style TargetType="ComboBox">
-                    <Setter Property="ItemsSource" Value="{Binding PlayerTypes}"/>
-                    <Setter Property="IsEnabled" Value="{Binding NotPlaying}"/>
-                    <Setter Property="DisplayMemberPath" Value="Key"/>
-                    <Setter Property="SelectedValuePath" Value="Value"/>
-                    <Setter Property="FontSize" Value="14"/>
-                </Style>
-                <Style TargetType="TextBox">
-                    <Setter Property="IsEnabled" Value="{Binding NotPlaying}"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="BorderThickness" Value="0.8"/>
-                    <Setter Property="FontSize" Value="14"/>
-                </Style>
-            </Grid.Resources>
-            
-            <ComboBox SelectedValue="{Binding Player01Type}" Grid.Row="0" Grid.Column="0"/>
-            <TextBox Text="{Binding Player01Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="0" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <ComboBox SelectedValue="{Binding Player02Type}" Grid.Row="0" Grid.Column="4"/>
-            <TextBox Text="{Binding Player02Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4"/>
+                <Grid.Resources>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemsSource" Value="{Binding PlayerTypes}"/>
+                        <Setter Property="IsEnabled" Value="{Binding NotPlaying}"/>
+                        <Setter Property="DisplayMemberPath" Value="Key"/>
+                        <Setter Property="SelectedValuePath" Value="Value"/>
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="IsEnabled" Value="{Binding NotPlaying}"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0.8"/>
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>
+                </Grid.Resources>
 
-            <Button Content="Start" Command="{Binding StartClickCommand}" IsEnabled="{Binding NotPlaying}" FontSize="14" Grid.Row="2" Grid.Column="2"/>
+                <ComboBox SelectedValue="{Binding Player01Type}" Grid.Row="0" Grid.Column="0"/>
+                <TextBox Text="{Binding Player01Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="0" />
+
+                <ComboBox SelectedValue="{Binding Player02Type}" Grid.Row="0" Grid.Column="4"/>
+                <TextBox Text="{Binding Player02Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4"/>
+
+                <Button Content="Start" Command="{Binding StartClickCommand}" IsEnabled="{Binding NotPlaying}" FontSize="14" Grid.Row="2" Grid.Column="2"/>
+            </Grid>
+
+            <Border Background="AliceBlue" BorderBrush="Black" BorderThickness="0.8" Grid.Row="2">
+                <TextBlock Text="{Binding Message}" FontSize="18" IsEnabled="False" HorizontalAlignment="Center"/>
+            </Border>
+
+            <UniformGrid Grid.Row="4">
+                <UniformGrid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="50"/>
+                        <Setter Property="Background" Value="Beige"/>
+                    </Style>
+                </UniformGrid.Resources>
+
+                <Button Content="{Binding Field[0]}" Command="{Binding FieldClickCommand}" CommandParameter="0"/>
+                <Button Content="{Binding Field[1]}" Command="{Binding FieldClickCommand}" CommandParameter="1"/>
+                <Button Content="{Binding Field[2]}" Command="{Binding FieldClickCommand}" CommandParameter="2"/>
+                <Button Content="{Binding Field[3]}" Command="{Binding FieldClickCommand}" CommandParameter="3"/>
+                <Button Content="{Binding Field[4]}" Command="{Binding FieldClickCommand}" CommandParameter="4"/>
+                <Button Content="{Binding Field[5]}" Command="{Binding FieldClickCommand}" CommandParameter="5"/>
+                <Button Content="{Binding Field[6]}" Command="{Binding FieldClickCommand}" CommandParameter="6"/>
+                <Button Content="{Binding Field[7]}" Command="{Binding FieldClickCommand}" CommandParameter="7"/>
+                <Button Content="{Binding Field[8]}" Command="{Binding FieldClickCommand}" CommandParameter="8"/>
+            </UniformGrid>
         </Grid>
-
-        <Border  Background="AliceBlue" BorderBrush="Black" BorderThickness="0.8" Grid.Row="3" Grid.Column="1">
-        <TextBlock Text="{Binding Message}" FontSize="18" IsEnabled="False" HorizontalAlignment="Center"/>            
-        </Border>
-
-        <UniformGrid Grid.Row="5" Grid.Column="1">
-            <UniformGrid.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="FontSize" Value="50"/>
-                    <Setter Property="Background" Value="Beige"/>
-                </Style>
-            </UniformGrid.Resources>
-
-            <Button Content="{Binding Field[0]}" Command="{Binding FieldClickCommand}" CommandParameter="0"/>
-            <Button Content="{Binding Field[1]}" Command="{Binding FieldClickCommand}" CommandParameter="1"/>
-            <Button Content="{Binding Field[2]}" Command="{Binding FieldClickCommand}" CommandParameter="2"/>
-            <Button Content="{Binding Field[3]}" Command="{Binding FieldClickCommand}" CommandParameter="3"/>
-            <Button Content="{Binding Field[4]}" Command="{Binding FieldClickCommand}" CommandParameter="4"/>
-            <Button Content="{Binding Field[5]}" Command="{Binding FieldClickCommand}" CommandParameter="5"/>
-            <Button Content="{Binding Field[6]}" Command="{Binding FieldClickCommand}" CommandParameter="6"/>
-            <Button Content="{Binding Field[7]}" Command="{Binding FieldClickCommand}" CommandParameter="7"/>
-            <Button Content="{Binding Field[8]}" Command="{Binding FieldClickCommand}" CommandParameter="8"/>
-        </UniformGrid>                
     </Grid>
 </Window>
