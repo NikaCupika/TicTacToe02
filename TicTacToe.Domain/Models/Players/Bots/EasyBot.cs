@@ -4,8 +4,10 @@ namespace TicTacToe.Domain.Models.Players.Bots;
 
 public class EasyBot : BaseBot
 {
+    private Random random = new Random();
+
     public EasyBot() 
-        : base("Easy Bot")
+        : base("Einfacher Roboter")
     { }
 
     public override Coordinate GetMove(char[,] board)
@@ -13,8 +15,8 @@ public class EasyBot : BaseBot
         int x, y;
         do
         {
-            x = new Random().Next(0, 3);
-            y = new Random().Next(0, 3);
+            x = random.Next(0, 3);
+            y = random.Next(0, 3);
         } while (board[y, x] != default);
 
         return new Coordinate(x, y);

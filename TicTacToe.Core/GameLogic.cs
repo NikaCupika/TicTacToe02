@@ -6,7 +6,7 @@ using TicTacToe.Domain.Models.Players;
 namespace TicTacToe.Core;
 public class GameLogic
 {
-    private char[,] _array = new char[3, 3];
+    private char[,] _board = new char[3, 3];
     private readonly BasePlayer _player1;
     private readonly BasePlayer _player2;
     private BasePlayer? _currentPlayer;
@@ -31,7 +31,7 @@ public class GameLogic
         }
 
         // bot moves
-        Coordinate initialMove = bot.GetMove(_array);
+        Coordinate initialMove = bot.GetMove(_board);
         SetValue(initialMove);
     }
 
@@ -42,7 +42,7 @@ public class GameLogic
     /// <summary>
     /// Get X or O on given coordinates
     /// </summary>
-    public char GetValue(Coordinate coord) => _array[coord.Y, coord.X];
+    public char GetValue(Coordinate coord) => _board[coord.Y, coord.X];
 
     /// <summary>
     /// Place current player on the given coordinates. If the enemy is a bot it will make it's move
@@ -52,7 +52,7 @@ public class GameLogic
     /// </exception>
     public void SetValue(Coordinate coord)
     {
-        if (_array[coord.Y, coord.X] == 'X' || _array[coord.Y, coord.X] == 'O')
+        if (_board[coord.Y, coord.X] == 'X' || _board[coord.Y, coord.X] == 'O')
         {
             throw new Exception("Field already ocupied!");
         }
@@ -61,8 +61,8 @@ public class GameLogic
             throw new Exception("Failed not get current player.");
         }
 
-        _array[coord.Y, coord.X] = _currentPlayer.Symbol;
-        int result = BoardExtention.CheckGameSituation(_array);
+        _board[coord.Y, coord.X] = _currentPlayer.Symbol;
+        int result = BoardExtention.CheckGameSituation(_board);
 
         if (result < 2)
         {
@@ -85,7 +85,7 @@ public class GameLogic
         }
 
         // bot moves
-        Coordinate move = bot.GetMove(_array);
+        Coordinate move = bot.GetMove(_board);
         SetValue(move);
     }
 }

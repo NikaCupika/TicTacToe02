@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:TicTacToe.Wpf.ViewModels"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=False}"
-        Title="Tic Tac Toe" Height="640" Width="500">
+        Title="Tic Tac Toe" Height="740" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
@@ -58,23 +58,23 @@
                     </Style>
                 </Grid.Resources>
 
-                <ComboBox SelectedValue="{Binding Player01Type}" Grid.Row="0" Grid.Column="0"/>
-                <TextBox Text="{Binding Player01Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="0" />
+                <ComboBox FontSize="20" SelectedValue="{Binding Player01Type}" Grid.Row="0" Grid.Column="0"/>
+                <TextBox Text="{Binding Player01Name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="2" Grid.Column="0" />
 
-                <ComboBox SelectedValue="{Binding Player02Type}" Grid.Row="0" Grid.Column="4"/>
-                <TextBox Text="{Binding Player02Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4"/>
+                <ComboBox FontSize="20" SelectedValue="{Binding Player02Type}" Grid.Row="0" Grid.Column="4"/>
+                <TextBox Text="{Binding Player02Name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="2" Grid.Column="4"/>
 
-                <Button Content="Start" Command="{Binding StartClickCommand}" IsEnabled="{Binding NotPlaying}" FontSize="14" Grid.Row="2" Grid.Column="2"/>
+                <Button Content="Start" Command="{Binding StartClickCommand}" IsEnabled="{Binding NotPlaying}" FontSize="22" Grid.Row="2" Grid.Column="2"/>
             </Grid>
 
             <Border Background="AliceBlue" BorderBrush="Black" BorderThickness="0.8" Grid.Row="2">
-                <TextBlock Text="{Binding Message}" FontSize="18" IsEnabled="False" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Message}" FontSize="24" IsEnabled="False" HorizontalAlignment="Center"/>
             </Border>
 
             <UniformGrid Grid.Row="4">
                 <UniformGrid.Resources>
                     <Style TargetType="Button">
-                        <Setter Property="FontSize" Value="50"/>
+                        <Setter Property="FontSize" Value="70"/>
                         <Setter Property="Background" Value="Beige"/>
                     </Style>
                 </UniformGrid.Resources>
