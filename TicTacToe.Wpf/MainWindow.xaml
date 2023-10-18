@@ -58,17 +58,17 @@
                     </Style>
                 </Grid.Resources>
 
-                <ComboBox FontSize="20" SelectedValue="{Binding Player01Type}" Grid.Row="0" Grid.Column="0"/>
+                <ComboBox FontSize="18" SelectedValue="{Binding Player01Type}" Grid.Row="0" Grid.Column="0"/>
                 <TextBox Text="{Binding Player01Name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="2" Grid.Column="0" />
 
-                <ComboBox FontSize="20" SelectedValue="{Binding Player02Type}" Grid.Row="0" Grid.Column="4"/>
+                <ComboBox FontSize="18" SelectedValue="{Binding Player02Type}" Grid.Row="0" Grid.Column="4"/>
                 <TextBox Text="{Binding Player02Name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="2" Grid.Column="4"/>
 
-                <Button Content="Start" Command="{Binding StartClickCommand}" IsEnabled="{Binding NotPlaying}" FontSize="22" Grid.Row="2" Grid.Column="2"/>
+                <Button Content="Start" Command="{Binding StartClickCommand}" IsEnabled="{Binding NotPlaying}" FontSize="20" Grid.Row="2" Grid.Column="2"/>
             </Grid>
 
             <Border Background="AliceBlue" BorderBrush="Black" BorderThickness="0.8" Grid.Row="2">
-                <TextBlock Text="{Binding Message}" FontSize="24" IsEnabled="False" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Message}" FontSize="20" IsEnabled="False" HorizontalAlignment="Center"/>
             </Border>
 
             <UniformGrid Grid.Row="4">

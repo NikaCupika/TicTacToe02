@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TicTacToe.Core;
 using TicTacToe.Domain.Models;
 using TicTacToe.Domain.Models.Cordinates;
+using TicTacToe.Domain.Models.Players;
 using TicTacToe.Domain.Models.Players.Bots;
 
 namespace TicTacToe.Wpf.ViewModels;
@@ -19,7 +20,8 @@ public partial class MainWindowViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(StartClickCommand))]
-    private Type? _player01Type;
+    private Type? _player01Type = typeof(HumanPlayer);
+
     partial void OnPlayer01TypeChanged(Type? value)
     {
         if ((value == typeof(EasyBot) || value == typeof(HardBot)) && string.IsNullOrEmpty(Player01Name))
@@ -34,7 +36,7 @@ public partial class MainWindowViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(StartClickCommand))]
-    private Type? _player02Type;
+    private Type? _player02Type = typeof(HumanPlayer);
     partial void OnPlayer02TypeChanged(Type? value)
     {
         if ((value == typeof(EasyBot) || value == typeof(HardBot)) && string.IsNullOrEmpty(Player02Name))
