@@ -2,6 +2,6 @@
 public class HumanPlayer : BasePlayer
 {
     public HumanPlayer() 
-        : base("Mensch")
+        : base("Human")
     { }
 }

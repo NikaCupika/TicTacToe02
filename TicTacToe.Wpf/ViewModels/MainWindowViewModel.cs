@@ -54,9 +54,9 @@ public partial class MainWindowViewModel : ObservableObject
     {
         get
         {
-            if (_game == null) return "Vergebe die Namen und starte das Spiel";
-            if (_game.GameOver && _game.CurrentPlayer == null) return "Es ist unentschieden";
-            if (_game.GameOver) return $"{_game.CurrentPlayer?.Symbol} ({_game.CurrentPlayer?.Name}) hat gewonnen!";
+            if (_game == null) return "Create players and start the game.";
+            if (_game.GameOver && _game.CurrentPlayer == null) return "It's a tie";
+            if (_game.GameOver) return $"{_game.CurrentPlayer?.Symbol} ({_game.CurrentPlayer?.Name}) won!";
             return $"{_game.CurrentPlayer?.Symbol} ({_game.CurrentPlayer?.Name})";
         }
     }

@@ -6,7 +6,7 @@ namespace TicTacToe.Domain.Models.Players.Bots;
 public class HardBot : BaseBot
 {
     public HardBot() 
-        : base("Unbesiegbar") 
+        : base("Unbeatable") 
     { }
 
     public override Coordinate GetMove(char[,] board)
