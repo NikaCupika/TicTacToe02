@@ -5,7 +5,7 @@ namespace TicTacToe.Domain.Models.Players.Bots;
 public class EasyBot : BaseBot
 {
     public EasyBot() 
-        : base("Easy Bot")
+        : base("Einfach")
     { }
 
     public override Coordinate GetMove(char[,] board)

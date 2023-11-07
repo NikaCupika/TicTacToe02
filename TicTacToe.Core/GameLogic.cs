@@ -54,11 +54,11 @@ public class GameLogic
     {
         if (_board[coord.Y, coord.X] == 'X' || _board[coord.Y, coord.X] == 'O')
         {
-            throw new Exception("Field already ocupied!");
+            throw new Exception("Feld ist schon befühlt!");
         }
         if (_currentPlayer is null)
         {
-            throw new Exception("Failed not get current player.");
+            throw new Exception("Derzeitige Spieler nicht gefunden.");
         }
 
         _board[coord.Y, coord.X] = _currentPlayer.Symbol;
